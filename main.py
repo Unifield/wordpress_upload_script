@@ -6,8 +6,6 @@ import time, base64, os
 import credentials
 
 
-# path_to_file = os.path.join(os.getcwd(), "requirements.txt")
-# page_title = "Test 1"
 
 
 def website_automation(path_to_file, username, password, tags, page_title):
@@ -38,9 +36,8 @@ def website_automation(path_to_file, username, password, tags, page_title):
     # Click on "Insert into Editor"
     selenium_wrapper.find_element(("id", "mammoth-docx-insert")).click()
     # Wait for the editor to fill
-    while len(selenium_wrapper.find_element(("xpath", "//div[@id='editor']//div[starts-with(@id, 'editor')]"),
-                                            timeout=600).text) < 1:
-        time.sleep(1)
+    selenium_wrapper.find_element(("xpath", "//div[@id='editor']//div[starts-with(@id, 'editor')]"),
+                                  timeout=600)
     # Open the "Post" menu
     selenium_wrapper.find_element(("xpath", "//button[text()='Post']")).click()
     # Open the Categories harmonica
@@ -60,8 +57,8 @@ def website_automation(path_to_file, username, password, tags, page_title):
 
 
 def write_entry_to_file(filename, text):
-    with open(filename, "a+") as logfile:
-        logfile.write(text + "\n")
+    with open(filename, "a+") as file:
+        file.write(text + "\n")
 
 
 if __name__ == '__main__':
@@ -87,8 +84,3 @@ if __name__ == '__main__':
         write_entry_to_file(os.path.join("logs", "only_links.txt"), page_link)
         print(entry)
         time.sleep(1)  # A second of wait is needed because of wordpress timestamps
-
-        # time.sleep(30)
-        # break
-
-# time.sleep(30)
