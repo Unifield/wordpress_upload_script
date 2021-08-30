@@ -6,8 +6,6 @@ import time, base64, os
 import credentials
 
 
-
-
 def website_automation(path_to_file, username, password, tags, page_title):
     # Initiate the driver
     if os.name == "posix":
@@ -71,6 +69,11 @@ if __name__ == '__main__':
 
     file_list = os.listdir("files_to_upload")
     file_list.sort()  # This is needed, so the files wouldn't upload in a random order
+
+    if len(file_list) == 0:
+        print("Please put the .docx or .doc files in the files_to_upload folder and run the script again")
+        sys.exit()
+
     for filename in file_list:
         if not filename.endswith(".docx") or filename.endswith(".doc"):
             continue
