@@ -75,7 +75,7 @@ if __name__ == '__main__':
         sys.exit()
 
     for filename in file_list:
-        if not filename.endswith(".docx") or filename.endswith(".doc"):
+        if not (filename.endswith(".docx") or filename.endswith(".doc")):
             continue
         path_to_file = os.path.join(os.getcwd(), "files_to_upload", filename)
         page_link = website_automation(path_to_file, user_username, user_password, tags,
